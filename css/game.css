@@ -3,13 +3,12 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* Removemos min-height para não empurrar o footer */
   background-image: url('../images/bg.jpg');
   background-size: cover;
   background-position: center;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 10px 10px 5px; /* espaço menor abaixo */
+  align-items: center;       /* centraliza horizontalmente */
+  justify-content: flex-start; /* mantém o conteúdo começando do topo */
+  padding: 10px 10px 5px;
 }
 
 /* HEADER */
@@ -42,12 +41,12 @@ footer {
 
 /* GRID */
 .grid {
+  margin-top: 20px; /* ajusta conforme desejar */
   display: grid;
   width: 100%;
   max-width: 1200px;
-  gap: 0; /* sem espaçamento horizontal e vertical */
-  grid-template-columns: repeat(5, 1fr); /* 5 colunas */
-  grid-auto-rows: calc((100vh - 50px - 30px - 20px) / 3); /* altura das linhas = altura dos cards, ajuste automático */
+  gap: 0;
+  /* grid-template-columns e grid-auto-rows são definidos pelo JS */
 }
 
 /* CARDS */
