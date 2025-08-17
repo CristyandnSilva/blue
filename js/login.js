@@ -15,7 +15,7 @@ const handleSubmit = (event) => {
   event.preventDefault();
 
   localStorage.setItem('jogador', input.value);
-  window.location = 'pages/game.php';
+  window.location = 'pages/game.html';
 }
 
 input.addEventListener('input', validateInput);
