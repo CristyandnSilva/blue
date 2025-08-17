@@ -56,16 +56,6 @@
   cursor: auto;
 }
 
-footer {
-  padding: 20px 0 10px 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  text-align: center;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  margin-top: 20px; /* diminui a distância do conteúdo acima */
-}
-
 body, html {
   height: 100%;
   margin: 0;
@@ -74,9 +64,21 @@ body, html {
 }
 
 main {
-  flex: 1;
+  flex: 1; /* ocupa todo o espaço restante entre header e footer */
   display: flex;
   flex-direction: column;
+  justify-content: center; /* centraliza verticalmente o conteúdo */
+  align-items: center; /* centraliza horizontalmente */
+}
+
+footer {
+  padding: 10px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  margin: 0; /* sem margem extra */
 }
 
 .grid {
