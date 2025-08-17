@@ -124,15 +124,23 @@ main {
 @media screen and (max-width: 920px) {
   .grid {
     grid-template-columns: repeat(5, 1fr);
+    gap: 8px; /* reduz o espaçamento */
+    max-height: calc(100vh - 150px); /* altura disponível para a grid */
+  }
+
+  .card {
+    aspect-ratio: 2/3; /* cartas menores para caber na tela */
+    width: 100%;
   }
 
   header {
-    font-size: 1rem; /* reduz o tamanho da fonte */
-    padding: 15px 20px; /* reduz o padding mantendo a posição horizontal */
+    font-size: 1rem;
+    padding: 15px 20px;
   }
 
   footer {
-    font-size: 0.7rem; /* reduz o tamanho da fonte */
-    padding: 10px 0; /* reduz o padding vertical */
+    font-size: 0.7rem;
+    padding: 5px 0;
+    margin-top: 0; /* evita espaço extra */
   }
 }
