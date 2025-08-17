@@ -13,21 +13,26 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
-// Ajusta tamanho das cartas para caber na tela
+// Ajusta altura dos cards dinamicamente (mantendo 3/4)
 const ajustarCards = () => {
   const cards = document.querySelectorAll('.card');
   const header = document.querySelector('header');
   const footer = document.querySelector('footer');
-  
+
   const totalCards = cards.length;
   const screenWidth = window.innerWidth - 10; // padding do main
-  const screenHeight = window.innerHeight - header.offsetHeight - footer.offsetHeight - 10;
+  const screenHeight = window.innerHeight - header.offsetHeight - footer.offsetHeight - 20;
 
   const columns = screenWidth < 920 ? 5 : 7;
   const rows = Math.ceil(totalCards / columns);
 
-  const gap = 4; // gap do CSS
+  // Gap do CSS
+  const gap = screenWidth < 920 ? 3 : 5;
+
+  // largura máxima do card
   const maxCardWidth = (screenWidth - (columns - 1) * gap) / columns;
+
+  // altura máxima do card
   const maxCardHeight = (screenHeight - (rows - 1) * gap) / rows;
 
   // altura final mantendo proporção 3/4
@@ -40,7 +45,7 @@ const ajustarCards = () => {
   grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
 }
 
-// Verifica se o jogo terminou
+// Checa se o jogo terminou
 const checkEndGame = () => {
   const disabledCards = document.querySelectorAll('.disabled-card');
   if (disabledCards.length === 20) {
@@ -49,7 +54,7 @@ const checkEndGame = () => {
   }
 }
 
-// Verifica cartas selecionadas
+// Checa cartas selecionadas
 const checkCards = () => {
   const firstCharacter = firstCard.getAttribute('data-character');
   const secondCharacter = secondCard.getAttribute('data-character');
@@ -88,23 +93,28 @@ const createCard = (character) => {
   const card = createElement('div', 'card');
   const front = createElement('div', 'face front');
   const back = createElement('div', 'face back');
+
   front.style.backgroundImage = `url('../images/${character}.png')`;
+
   card.appendChild(front);
   card.appendChild(back);
+
   card.addEventListener('click', revealCard);
   card.setAttribute('data-character', character);
   return card;
 }
 
-// Carrega o jogo
+// Carrega jogo
 const loadGame = () => {
   const duplicateCharacters = [...characters, ...characters];
   const shuffledArray = duplicateCharacters.sort(() => Math.random() - 0.5);
+
   shuffledArray.forEach(character => {
     const card = createCard(character);
     grid.appendChild(card);
   });
-  ajustarCards(); // ajusta tamanho das cartas após criar
+
+  ajustarCards(); // ajusta tamanho dos cards após criar
 }
 
 // Timer
@@ -122,5 +132,5 @@ window.onload = () => {
   loadGame();
 }
 
-// Ajusta cards ao redimensionar tela
+// Ajusta cards ao redimensionar a tela
 window.addEventListener('resize', ajustarCards);
