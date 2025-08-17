@@ -13,29 +13,15 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
-// Ajusta altura dos cards dinamicamente
+// Ajusta cards apenas no desktop
 const ajustarCards = () => {
-  const cards = document.querySelectorAll('.card');
-  const screenWidth = window.innerWidth;
-
-  if (screenWidth < 920) {
-    // CELULAR: altura calculada para 4 linhas visíveis
-    const columns = 5;
-    const rows = 4;
-    const cardWidth = screenWidth / columns;
-    const cardHeight = (window.innerHeight - 40 - 50 - 20) / rows; // header + footer + padding
-
-    cards.forEach(card => card.style.height = `${cardHeight}px`);
-    grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-    grid.style.gridAutoRows = `${cardHeight}px`;
-  } else {
-    // DESKTOP: usa apenas aspect-ratio do CSS
-    cards.forEach(card => card.style.height = 'auto');
+  if (window.innerWidth >= 920) {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => card.style.height = 'auto'); // aspect-ratio do CSS
     grid.style.gridTemplateColumns = 'repeat(7, 1fr)';
     grid.style.gridAutoRows = 'auto';
+    grid.style.gap = '15px';
   }
-
-  grid.style.gap = '15px';
 }
 
 // Checa se o jogo terminou
@@ -125,5 +111,5 @@ window.onload = () => {
   loadGame();
 }
 
-// Ajusta cards ao redimensionar a tela
+// Ajusta cards ao redimensionar a tela (apenas desktop)
 window.addEventListener('resize', ajustarCards);
