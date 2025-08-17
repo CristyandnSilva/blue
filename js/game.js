@@ -16,10 +16,10 @@ let secondCard = '';
 // Ajusta altura dos cards dinamicamente
 const ajustarCards = () => {
   const cards = document.querySelectorAll('.card');
-  const screenWidth = window.innerWidth - 40; // padding do main
+  const screenWidth = window.innerWidth;
 
   if (screenWidth < 920) {
-    // CELULAR
+    // CELULAR: altura calculada para 4 linhas visíveis
     const columns = 5;
     const rows = 4;
     const cardWidth = screenWidth / columns;
@@ -29,10 +29,10 @@ const ajustarCards = () => {
     grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
     grid.style.gridAutoRows = `${cardHeight}px`;
   } else {
-    // DESKTOP
+    // DESKTOP: usa apenas aspect-ratio do CSS
+    cards.forEach(card => card.style.height = 'auto');
     grid.style.gridTemplateColumns = 'repeat(7, 1fr)';
     grid.style.gridAutoRows = 'auto';
-    cards.forEach(card => card.style.height = 'auto');
   }
 
   grid.style.gap = '15px';
