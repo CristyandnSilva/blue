@@ -41,7 +41,7 @@ footer {
 
 /* GRID */
 .grid {
-  margin-top: 20px; /* ajusta conforme desejar */
+  margin-top: 50px; /* ajusta conforme desejar */
   display: grid;
   width: 100%;
   max-width: 1200px;
