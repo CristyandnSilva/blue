@@ -63,7 +63,7 @@ footer {
   color: #fff;
   font-family: Arial, sans-serif;
   font-size: 0.9rem;
-  margin-top: 1cm;
+  margin-top: 20px; /* diminui a distância do conteúdo acima */
 }
 
 body, html {
