@@ -45,7 +45,9 @@ footer {
   display: grid;
   width: 100%;
   max-width: 1200px;
-  gap: 0; /* sem espaçamento horizontal e vertical */
+  gap: 0;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: calc((100vh - 40px - 30px - 20px) / 4); /* mesma altura que os cards */
 }
 
 /* CARDS */
@@ -131,9 +133,9 @@ main { flex: 1; display: flex; flex-direction: column; justify-content: flex-sta
   main { padding: 5px; }
 
  .grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0; /* sem espaçamento */
-  }
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: calc((100vh - 40px - 30px - 20px) / 4); /* mesma altura que os cards */
+}
 
   /* Ajusta altura dos cards para caber na tela em 4 linhas */
   .card {
