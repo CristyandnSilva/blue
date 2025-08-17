@@ -45,7 +45,7 @@ footer {
   display: grid;
   width: 100%;
   max-width: 1200px;
-  gap: 0 1px; /* 0 horizontal, 3px vertical */
+  gap: 0; /* sem espaçamento horizontal e vertical */
 }
 
 /* CARDS */
@@ -130,9 +130,9 @@ main { flex: 1; display: flex; flex-direction: column; justify-content: flex-sta
 
   main { padding: 5px; }
 
-.grid {
+ .grid {
     grid-template-columns: repeat(5, 1fr);
-    gap: 0 1px; /* 0 horizontal, 3px vertical */
+    gap: 0; /* sem espaçamento */
   }
 
   /* Ajusta altura dos cards para caber na tela em 4 linhas */
