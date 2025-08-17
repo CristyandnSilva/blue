@@ -1,88 +1,87 @@
+/* MAIN */
 main {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 100vh;
   background-image: url('../images/bg.jpg');
   background-size: cover;
-  min-height: 100vh;
+  background-position: center;
   align-items: center;
-  justify-content: center;
-  padding: 20px 20px 50px;
-  background-color: #4AA3CE;
+  justify-content: flex-start;
+  padding: 10px;
 }
 
+/* HEADER */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #F6F8FB;
-  font-size: 1.2em;
   width: 100%;
-  max-width: 1200px; /* alinhado com a grid */
-  padding: 30px;
-  margin: 0 auto 30px; /* centraliza */
+  max-width: 1200px;
+  padding: 5px 10px;
+  height: 50px; /* altura menor para liberar espaço */
+  background-color: #F6F8FB;
+  font-size: 1rem;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 15px;
   width: 100%;
-  max-width: 1200px; /* mesma largura do header */
-  margin: 0 auto; /* centraliza */
+  max-width: 1200px;
+  gap: 5px; /* espaçamento menor para caber na tela */
 }
 
+/* CARDS */
 .card {
-  aspect-ratio: 3/4;
   width: 100%;
+  aspect-ratio: 3/4; /* mantém proporção */
   border-radius: 5px;
   position: relative;
+  background-color: #ccc;
+  background-size: cover;
+  background-position: center;
   transition: all 400ms ease;
   transform-style: preserve-3d;
-  background-color: #ccc;
 }
 
+/* FACES DO CARD */
 .face {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-size: cover;
-  background-position: center;
   border: 5px solid #00b5cc;
   border-radius: 5px;
+  background-size: cover;
+  background-position: center;
   transition: all 400ms ease;
 }
 
-.front {
-  transform: rotateY(180deg);
-}
+.front { transform: rotateY(180deg); }
 
 .back {
   background-image: url('../images/back.png');
   backface-visibility: hidden;
 }
 
-.reveal-card {
-  transform: rotateY(180deg);
-}
+.reveal-card { transform: rotateY(180deg); }
+.disabled-card { filter: saturate(0); opacity: 0.5; }
 
-.disabled-card {
-  filter: saturate(0);
-  opacity: 0.5;
-}
-
+/* VOLTAR BUTTON */
 .voltar-container {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .voltar-btn {
   background-color: #00b5cc;
   color: white;
-  font-size: 1.2rem;
-  padding: 10px 20px;
+  font-size: 1rem;
+  padding: 8px 16px;
   border: none;
   border-radius: 12px;
   cursor: pointer;
@@ -90,20 +89,22 @@ header {
   font-family: 'Comic Sans MS', cursive, sans-serif;
 }
 
-.voltar-btn:hover {
-  background-color: #00b5cc;
-}
+.voltar-btn:hover { background-color: #00b5cc; }
 
+/* FOOTER */
 footer {
-  padding: 20px 0 10px 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  width: 100%;
+  height: 30px; /* altura menor para caber na tela */
+  padding: 5px 0;
+  margin: 0;
   text-align: center;
   color: #fff;
   font-family: Arial, sans-serif;
-  font-size: 0.9rem;
-  margin-top: 1cm;
+  font-size: 0.7rem;
+  background-color: rgba(0,0,0,0.4);
 }
 
+/* BODY E HTML */
 body, html {
   height: 100%;
   margin: 0;
@@ -111,51 +112,16 @@ body, html {
   flex-direction: column;
 }
 
-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
+/* MAIN FLEX */
+main { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; }
 
-.grid {
-  flex-grow: 1;
-}
+/* GRID FLEX */
+.grid { flex-grow: 1; }
+
+/* MEDIA QUERIES PARA CELULAR */
 @media screen and (max-width: 920px) {
-  main {
-    min-height: 100vh;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* header no topo, footer no fim, grid no meio */
-    align-items: center;
-  }
-
-  header {
-    font-size: 0.9rem;
-    padding: 5px 10px;
-    height: 40px; /* altura menor */
-  }
-
-  footer {
-    font-size: 0.7rem;
-    padding: 5px 0;
-    height: 30px;
-    margin: 0;
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 colunas */
-    gap: 4px; /* menor espaçamento */
-    width: 100%;
-    height: calc(100vh - 40px - 30px - 10px); 
-    /* 100vh - header - footer - padding */
-  }
-
-  .card {
-    width: 100%;
-    aspect-ratio: 3/4;
-    max-height: 100%;
-    transform: scale(0.9); /* reduz ligeiramente para caber */
-  }
+  .grid { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+  header { font-size: 0.9rem; padding: 5px 10px; height: 40px; }
+  footer { font-size: 0.7rem; height: 30px; padding: 3px 0; }
+  main { padding: 5px; }
 }
