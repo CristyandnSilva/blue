@@ -1,0 +1,138 @@
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-image: url('../images/bg.jpg');
+  background-size: cover;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 20px 50px;
+  background-color: #4AA3CE;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #F6F8FB;
+  font-size: 1.2em;
+  width: 100%;
+  max-width: 1200px; /* alinhado com a grid */
+  padding: 30px;
+  margin: 0 auto 30px; /* centraliza */
+  border-radius: 5px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  width: 100%;
+  max-width: 1200px; /* mesma largura do header */
+  margin: 0 auto; /* centraliza */
+}
+
+.card {
+  aspect-ratio: 3/4;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  transition: all 400ms ease;
+  transform-style: preserve-3d;
+  background-color: #ccc;
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  border: 5px solid #00b5cc;
+  border-radius: 5px;
+  transition: all 400ms ease;
+}
+
+.front {
+  transform: rotateY(180deg);
+}
+
+.back {
+  background-image: url('../images/back.png');
+  backface-visibility: hidden;
+}
+
+.reveal-card {
+  transform: rotateY(180deg);
+}
+
+.disabled-card {
+  filter: saturate(0);
+  opacity: 0.5;
+}
+
+.voltar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.voltar-btn {
+  background-color: #00b5cc;
+  color: white;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.voltar-btn:hover {
+  background-color: #00b5cc;
+}
+
+footer {
+  padding: 20px 0 10px 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 0.9rem;
+  margin-top: 1cm;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 920px) {
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  header {
+    font-size: 1rem; /* reduz o tamanho da fonte */
+    padding: 15px 20px; /* reduz o padding mantendo a posição horizontal */
+  }
+
+  footer {
+    font-size: 0.7rem; /* reduz o tamanho da fonte */
+    padding: 10px 0; /* reduz o padding vertical */
+  }
+}
