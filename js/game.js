@@ -19,24 +19,34 @@ const ajustarCards = () => {
   const screenWidth = window.innerWidth - 10; // padding do main
   const screenHeight = window.innerHeight;
 
-  const columns = screenWidth < 920 ? 5 : 7;
-  const totalCards = cards.length;
+  let columns;
+  if (screenWidth < 920) {
+    columns = 5;
+  } else if (screenWidth < 1400) {
+    columns = 6;
+  } else {
+    columns = 7; // ou você pode ajustar para 5/6 para ficar melhor
+  }
 
   // largura do card
-  const cardWidth = screenWidth / columns;
+  let cardWidth = screenWidth / columns;
 
-  // altura mantendo proporção 3/4
+  // define tamanho máximo para não esticar demais
+  const maxCardWidth = 150; 
+  if (cardWidth > maxCardWidth) cardWidth = maxCardWidth;
+
   const cardHeight = cardWidth / 0.75;
 
-  // aplica altura aos cards e ao grid
   cards.forEach(card => {
     card.style.height = `${cardHeight}px`;
   });
 
   grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-  grid.style.gridAutoRows = `${cardHeight}px`; // altura das linhas igual ao card
-  grid.style.gap = '0'; // garante zero espaçamento
+  grid.style.gridAutoRows = `${cardHeight}px`;
+  grid.style.gap = '10px'; // adiciona espaçamento entre cartas
+  grid.style.justifyContent = 'center'; // centraliza o grid
 }
+
 
 // Checa se o jogo terminou
 const checkEndGame = () => {
