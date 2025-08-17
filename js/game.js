@@ -13,42 +13,35 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
-// Ajusta altura dos cards dinamicamente (mantendo 3/4)
+// Ajusta altura dos cards dinamicamente mantendo 3/4
 const ajustarCards = () => {
   const cards = document.querySelectorAll('.card');
-  const header = document.querySelector('header');
-  const footer = document.querySelector('footer');
-
-  const totalCards = cards.length;
   const screenWidth = window.innerWidth - 10; // padding do main
-  const screenHeight = window.innerHeight - header.offsetHeight - footer.offsetHeight - 20;
+  const screenHeight = window.innerHeight;
 
   const columns = screenWidth < 920 ? 5 : 7;
-  const rows = Math.ceil(totalCards / columns);
+  const totalCards = cards.length;
 
-  // Gap do CSS
-  const gap = screenWidth < 920 ? 3 : 5;
+  // largura do card
+  const cardWidth = screenWidth / columns;
 
-  // largura máxima do card
-  const maxCardWidth = (screenWidth - (columns - 1) * gap) / columns;
+  // altura mantendo proporção 3/4
+  const cardHeight = cardWidth / 0.75;
 
-  // altura máxima do card
-  const maxCardHeight = (screenHeight - (rows - 1) * gap) / rows;
-
-  // altura final mantendo proporção 3/4
-  const cardHeight = Math.min(maxCardHeight, maxCardWidth / 0.75);
-
+  // aplica altura aos cards e ao grid
   cards.forEach(card => {
     card.style.height = `${cardHeight}px`;
   });
 
   grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+  grid.style.gridAutoRows = `${cardHeight}px`; // altura das linhas igual ao card
+  grid.style.gap = '0'; // garante zero espaçamento
 }
 
 // Checa se o jogo terminou
 const checkEndGame = () => {
   const disabledCards = document.querySelectorAll('.disabled-card');
-  if (disabledCards.length === 20) {
+  if (disabledCards.length === characters.length * 2) {
     clearInterval(this.loop);
     alert(`Parabéns, ${spanPlayer.innerHTML}! Seu tempo foi de: ${timer.innerHTML}`);
   }
