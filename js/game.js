@@ -13,29 +13,29 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
-// Ajusta altura dos cards dinamicamente mantendo 3/4
+// Ajusta altura dos cards dinamicamente mantendo proporção 3/4
 const ajustarCards = () => {
   const cards = document.querySelectorAll('.card');
-  const screenWidth = window.innerWidth - 10; // padding do main
-  const screenHeight = window.innerHeight;
-
-  const columns = screenWidth < 920 ? 5 : 7;
+  const screenWidth = window.innerWidth - 20; // padding do main
   const totalCards = cards.length;
 
-  // largura do card
+  // Define colunas diferentes para celular e desktop
+  const columns = screenWidth < 920 ? 5 : 7;
+
+  // largura de cada card
   const cardWidth = screenWidth / columns;
 
   // altura mantendo proporção 3/4
   const cardHeight = cardWidth / 0.75;
 
-  // aplica altura aos cards e ao grid
+  // aplica altura aos cards e altura das linhas do grid
   cards.forEach(card => {
     card.style.height = `${cardHeight}px`;
   });
 
   grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-  grid.style.gridAutoRows = `${cardHeight}px`; // altura das linhas igual ao card
-  grid.style.gap = '0'; // garante zero espaçamento
+  grid.style.gridAutoRows = `${cardHeight}px`;
+  grid.style.gap = '0';
 }
 
 // Checa se o jogo terminou
