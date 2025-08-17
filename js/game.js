@@ -13,28 +13,33 @@ const createElement = (tag, className) => {
 let firstCard = '';
 let secondCard = '';
 
-// Ajusta altura dos cards dinamicamente mantendo proporção 3/4
+// Ajusta altura dos cards dinamicamente
 const ajustarCards = () => {
   const cards = document.querySelectorAll('.card');
-  const screenWidth = window.innerWidth - 20; // padding do main
+  const screenWidth = window.innerWidth - 20;
   const totalCards = cards.length;
 
-  // Define colunas diferentes para celular e desktop
-  const columns = screenWidth < 920 ? 5 : 7;
+  if (screenWidth < 920) {
+    // CELULAR
+    const columns = 5;
+    const rows = 4; // número de linhas visíveis
+    const cardWidth = screenWidth / columns;
+    const cardHeight = (window.innerHeight - 40 - 50 - 10) / rows; // header + footer + padding
 
-  // largura de cada card
-  const cardWidth = screenWidth / columns;
+    cards.forEach(card => card.style.height = `${cardHeight}px`);
+    grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    grid.style.gridAutoRows = `${cardHeight}px`;
+  } else {
+    // DESKTOP
+    const columns = 7; // pode ajustar conforme desejar
+    const cardWidth = screenWidth / columns;
+    const cardHeight = cardWidth / 0.75; // mantém proporção 3/4
 
-  // altura mantendo proporção 3/4
-  const cardHeight = cardWidth / 0.75;
+    cards.forEach(card => card.style.height = `${cardHeight}px`);
+    grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    grid.style.gridAutoRows = `${cardHeight}px`;
+  }
 
-  // aplica altura aos cards e altura das linhas do grid
-  cards.forEach(card => {
-    card.style.height = `${cardHeight}px`;
-  });
-
-  grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
-  grid.style.gridAutoRows = `${cardHeight}px`;
   grid.style.gap = '0';
 }
 
@@ -107,7 +112,7 @@ const loadGame = () => {
     grid.appendChild(card);
   });
 
-  ajustarCards(); // ajusta tamanho dos cards após criar
+  ajustarCards();
 }
 
 // Timer
