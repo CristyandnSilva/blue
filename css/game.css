@@ -7,7 +7,7 @@ main {
   background-size: cover;
   background-position: center;
   align-items: center;       /* centraliza horizontalmente */
-  justify-content: flex-start; /* mantém o conteúdo começando do topo */
+  justify-content: flex-start; /* default, ajustaremos com media queries */
   padding: 10px 10px 5px;
 }
 
@@ -27,7 +27,6 @@ header {
 }
 
 /* FOOTER */
-
 footer {
   width: 100%;
   padding: 5px 0;
@@ -36,17 +35,14 @@ footer {
   font-family: Arial, sans-serif;
   font-size: 0.8rem;
   background-color: rgba(0,0,0,0.4);
-  /* removemos altura fixa e margin para que apareça logo após as cartas */
 }
 
 /* GRID */
 .grid {
-  margin-top: 50px; /* ajusta conforme desejar */
   display: grid;
   width: 100%;
   max-width: 1200px;
-  gap: 0;
-  /* grid-template-columns e grid-auto-rows são definidos pelo JS */
+  gap: 0; /* sem espaçamento */
 }
 
 /* CARDS */
@@ -114,7 +110,9 @@ main { flex: 1; display: flex; flex-direction: column; justify-content: flex-sta
 /* GRID FLEX */
 .grid { flex-grow: 1; }
 
-/* MEDIA QUERIES PARA CELULAR */
+/* MEDIA QUERIES */
+
+/* Celular (mobile) */
 @media screen and (max-width: 920px) {
   header {
     font-size: 0.9rem;
@@ -124,20 +122,37 @@ main { flex: 1; display: flex; flex-direction: column; justify-content: flex-sta
 
   footer {
     font-size: 0.7rem;
-    height: 50px;
     padding: 5px 0;
     margin: 0;
   }
 
-  main { padding: 5px; }
+  main {
+    padding: 5px;
+    justify-content: flex-start; /* cartas próximas do topo */
+  }
 
   .grid {
-    grid-template-columns: repeat(5, 1fr); /* 5 colunas */
-    gap: 0; /* sem espaçamento */
-    grid-auto-rows: calc((100vh - 40px - 30px - 10px) / 4); /* 4 linhas visíveis na tela */
+    margin-top: 20px; 
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    grid-auto-rows: calc((100vh - 40px - 50px - 10px) / 4); /* 4 linhas visíveis */
   }
 
   .card {
-    height: 100%; /* ocupa toda a altura da linha */
+    height: 100%;
+  }
+}
+
+/* Desktop (telas grandes) */
+@media screen and (min-width: 921px) {
+  main {
+    justify-content: center; /* centraliza verticalmente as cartas */
+    padding-top: 20px;
+    padding-bottom: 20px; /* mantém espaço do footer */
+  }
+
+  .grid {
+    margin-top: 0; /* sem margem extra */
+    /* colunas e altura definidas pelo JS */
   }
 }
