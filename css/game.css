@@ -1,3 +1,4 @@
+/* MAIN */
 main {
   display: flex;
   flex-direction: column;
@@ -8,21 +9,35 @@ main {
   background-position: center;
   align-items: center;
   justify-content: flex-start;
-  padding: 5px;
+  padding: 10px;
 }
 
+/* HEADER */
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   max-width: 1200px;
-  padding: 5px 10px;
+  padding: 10px 15px;
   height: 50px;
   background-color: #F6F8FB;
   font-size: 1rem;
   border-radius: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+footer {
+  width: 100%;
+  height: 30px;
+  padding: 5px 0;
+  margin: 0;
+  text-align: center;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 0.8rem;
+  background-color: rgba(0,0,0,0.4);
 }
 
 /* GRID */
@@ -30,7 +45,7 @@ header {
   display: grid;
   width: 100%;
   max-width: 1200px;
-  gap: 4px;
+  gap: 5px;
 }
 
 /* CARDS */
@@ -38,10 +53,12 @@ header {
   width: 100%;
   aspect-ratio: 3/4; /* mantém proporção */
   border-radius: 5px;
+  position: relative;
   background-color: #ccc;
   background-size: cover;
   background-position: center;
   transition: all 400ms ease;
+  transform-style: preserve-3d;
 }
 
 /* FACES DO CARD */
@@ -57,16 +74,11 @@ header {
 }
 
 .front { transform: rotateY(180deg); }
-
-.back {
-  background-image: url('../images/back.png');
-  backface-visibility: hidden;
-}
-
+.back { background-image: url('../images/back.png'); backface-visibility: hidden; }
 .reveal-card { transform: rotateY(180deg); }
 .disabled-card { filter: saturate(0); opacity: 0.5; }
 
-/* VOLTAR BUTTON */
+/* BOTÃO VOLTAR */
 .voltar-container {
   display: flex;
   justify-content: center;
@@ -87,18 +99,6 @@ header {
 
 .voltar-btn:hover { background-color: #00b5cc; }
 
-/* FOOTER */
-footer {
-  width: 100%;
-  height: 30px;
-  font-size: 0.7rem;
-  padding: 3px 0;
-  margin: 0;
-  text-align: center;
-  color: #fff;
-  background-color: rgba(0,0,0,0.4);
-}
-
 /* BODY E HTML */
 body, html {
   height: 100%;
@@ -115,8 +115,28 @@ main { flex: 1; display: flex; flex-direction: column; justify-content: flex-sta
 
 /* MEDIA QUERIES PARA CELULAR */
 @media screen and (max-width: 920px) {
-  .grid { grid-template-columns: repeat(5, 1fr); gap: 4px; }
-  header { font-size: 0.9rem; padding: 5px 10px; height: 40px; }
-  footer { font-size: 0.7rem; height: 30px; padding: 3px 0; }
+  header {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    height: 40px;
+  }
+
+  footer {
+    font-size: 0.7rem;
+    height: 30px;
+    padding: 3px 0;
+    margin: 0;
+  }
+
   main { padding: 5px; }
+
+  .grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3px;
+  }
+
+  /* Ajusta altura dos cards para caber na tela em 4 linhas */
+  .card {
+    height: calc((100vh - 40px - 30px - 20px) / 4); /* 4 linhas, header + footer + padding */
+  }
 }
