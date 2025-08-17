@@ -17,7 +17,7 @@ let secondCard = '';
 const ajustarCards = () => {
   if (window.innerWidth >= 920) {
     const cards = document.querySelectorAll('.card');
-    cards.forEach(card => card.style.height = 'auto'); // aspect-ratio do CSS
+    cards.forEach(card => card.style.height = 'auto'); // desktop usa aspect-ratio do CSS
     grid.style.gridTemplateColumns = 'repeat(7, 1fr)';
     grid.style.gridAutoRows = 'auto';
     grid.style.gap = '15px';
